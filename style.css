@@ -1,0 +1,139 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  font-size: 62.5%;
+  --ff-all: 'Poppins', sans-serif;
+  --text-color: #303030;
+
+  --hue: 194;
+  --primary-color: hsl(var(--hue), 100%, 63%) 
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+
+  margin: 2.5rem 0;
+}
+
+body{
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+
+body *{
+  font-family: var(--ff-all);
+}
+
+button{
+  background-color: var(--primary-color);
+}
+
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+#app{
+  max-width: 700px;
+  margin: 2rem auto 0;
+}
+
+header input{
+  height: 3rem;
+
+  border-radius: 6px 0 0 6px ;
+  border-color: #e9e3e3;
+
+  margin-right: 0;
+}
+
+button{
+  height: 3rem;
+  width: 3rem;
+  border: none; 
+  margin: 0 0 0 -4px;
+
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;  
+}
+
+button:hover{
+  opacity: 60%;
+}
+
+table{
+  width: 100%;
+
+  border-collapse: collapse ;
+
+  box-shadow: 0 1rem 2rem -1rem rgba(0, 0, 0, 0.3);
+}
+
+table th{
+  text-align: left;
+  font-weight: normal;
+  padding: 1.5rem;
+}
+
+table th:first-child{
+  border-top-left-radius: .4rem;
+}
+
+table th:last-child{
+  border-top-right-radius: .4rem;
+}
+
+table tr:nth-child(){
+  background: #eee;
+}
+
+table tr:nth-child(odd){
+  background: #ddd;
+}
+
+table th{
+  background-color: var(--primary-color);
+  height: 8rem;
+
+}
+
+table td {
+  padding: 1.5rem;
+}
+
+.user{
+  display: flex;
+  gap: 2rem;
+}
+
+td.user img{
+  width: 5rem;
+  height: 5rem;
+
+  opacity: cover;
+  border-radius: 50%;
+}
+
+td.user a{
+  text-decoration: none;
+  color: #000000;
+}
+
+td.user a span{
+  font-weight: bold;
+}
+
+table td:last-child{
+  color: #ff0101;
+}
