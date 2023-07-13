@@ -1,27 +1,40 @@
+export class GithubUser{
+  static search(username){
+    const endpoint = `https://api.github.com/users/${username}`
+
+    return fetch(endpoint)
+    .then(data => data.json())
+    .then(({login, name, public_repos, followers}) => 
+    (
+      {
+        login,
+        name,
+        public_repos,
+        followers
+      }
+    ))
+  }
+}
+
 export class Favorites {
   constructor(root) {
-    this.root = document.querySelector(root)
-
-    
+    this.root = document.querySelector(root)   
     this.load()
+
+    GithubUser.search('LucasFCdev').then(user => console.log(user))
   }
 
   load(){
-    this.entries =[
-      {
-        login: 'LucasFCdev',
-        name: 'Lucas Ferraz',
-        public_repos: '15',
-        follower: '182'
-      },
+    this.entries = JSON.parse(localStorage.getItem('@github-favorites'))|| []
+ 
+  }
 
-       {
-        login: 'LucasFCdev',
-        name: 'Lucas Ferraz',
-        public_repos: '18',
-        follower: '86'
-      }
-    ]
+  delete(user){
+    const filteredUser = this.entries
+    .filter(entry => entry.login != user.login)
+
+    this.entries = filteredUser
+    this.update()
   }
 }
 
@@ -43,14 +56,22 @@ export class FavoritesView extends Favorites {
 
       this.entries.forEach( user => {
         const row = this.createRow()
-        console.log(row)
+        
 
-        console.log(row)
         row.querySelector('.user img').src = `https://github.com/${user.login}.png`
         row.querySelector('.user span').textContent = user.name
         row.querySelector('.user p').textContent =  user.login
         row.querySelector('.repositories').textContent = user.public_repos
-        row.querySelector('.followers').textContent = user.follower
+        row.querySelector('.followers').textContent = user.followers
+
+        row.querySelector('.remove').onclick = () => {
+          const isOk = confirm("Tem certeza que deseja deletar esse usuário ?")
+
+          console.log(user)
+          if(isOk){
+            this.delete(user)
+          }
+        }
 
         this.tbody.append(row)
       })

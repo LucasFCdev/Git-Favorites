@@ -136,4 +136,5 @@ td.user a span{
 
 table td:last-child{
   color: #ff0101;
+  cursor: pointer;
 }
